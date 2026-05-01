@@ -86,6 +86,8 @@ export default {
       case "鹦鹉":apiResponse=await this.echo(_data_event_message_content_text);break
       case "获取标签":apiResponse=await this.user_relate_in_group(_data_event_message_content_text,true); break
       case "获取所有标签":apiResponse=await this.user_relate_add_all_in_group(_data_event_message_content_text); break
+      case "甩掉标签":apiResponse=await this.user_relate_in_group(_data_event_message_content_text,true); break
+      case "甩掉所有标签":apiResponse=await this.user_relate_add_all_in_group(_data_event_message_content_text); break
       default:apiResponse=await this.test_echo_time()
     }
     
@@ -184,6 +186,7 @@ export default {
   /**
    * 获取标签（只能获取已有的标签，不会自动创建新的标签）
    * @param {*} tag 
+   * @param {*} isadd 
    * @returns 
    */
   async user_relate_in_group(tag,isadd=true){
@@ -210,9 +213,10 @@ export default {
   /**
    * 获取所有标签，cos被夺舍的蛋黄，震惊牢Feng
    * @param {*} tag 
+   * @param {*} isadd 
    * @returns 
    */
-  async user_relate_add_all_in_group(tag){
+  async user_relate_add_all_in_group(tag,isadd=true){
     if(conversation_type!="group")
       return "只有群中才有标签"
 
@@ -241,7 +245,7 @@ export default {
     if(_apiResponse_by_json.code==1){
       _apiResponse_by_json.data.list.forEach((fruit, index) => {
         console.log("获取标签列表",`${index}: ${fruit}`,fruit);
-        ctx_.waitUntil(this.user_relate_in_group(fruit.tag))
+        ctx_.waitUntil(this.user_relate_in_group(fruit.tag,isadd))
       })
 
     }
@@ -251,4 +255,3 @@ export default {
     return apiResponse
   },
 };
-
