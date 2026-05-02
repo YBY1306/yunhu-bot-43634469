@@ -98,7 +98,7 @@ export default {
 				apiResponse = await this.user_relate_add_all_in_group(_data_event_message_content_text, false);
 				break
 			default:
-				apiResponse = await this.test_echo_time()
+				// apiResponse = await this.test_echo_time()
 		}
 
 
