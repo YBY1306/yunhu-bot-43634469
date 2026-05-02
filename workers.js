@@ -89,13 +89,13 @@ export default {
 				apiResponse = await this.user_relate_in_group(_data_event_message_content_text, true);
 				break
 			case "获取所有标签":
-				apiResponse = await this.user_relate_add_all_in_group(_data_event_message_content_text);
+				apiResponse = await this.user_relate_add_all_in_group(_data_event_message_content_text, true);
 				break
 			case "甩掉标签":
-				apiResponse = await this.user_relate_in_group(_data_event_message_content_text, true);
+				apiResponse = await this.user_relate_in_group(_data_event_message_content_text, false);
 				break
 			case "甩掉所有标签":
-				apiResponse = await this.user_relate_add_all_in_group(_data_event_message_content_text);
+				apiResponse = await this.user_relate_add_all_in_group(_data_event_message_content_text, false);
 				break
 			default:
 				apiResponse = await this.test_echo_time()
